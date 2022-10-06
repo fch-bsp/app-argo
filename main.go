@@ -5,7 +5,7 @@ import "net/http"
 // Expondo menssagem na porta 8080 (Hello BSPCLOUD)
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("<h1>Olá Mundão<h1>"))
+		w.Write([]byte("<h1>Flow de CI/CD V1<h1>"))
 	})
 	http.ListenAndServe(":8080", nil)
 
