@@ -17,3 +17,33 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: nandocloud/argocdbsp
           tags: ${{ github.sha }}, latest
+# O deploy só roda depois do Build
+
+deploy: 
+  name: Deploy 
+  runs-on: ubuntu-latest
+  needs: build 
+  steps:
+    - name: checkout
+      uses: actions/checkout@v2
+# vai instalar o kustomize no ubuntu 
+    - name: kustomize
+      uses: imranismail/setup-kustomize@v1 
+      with:
+        kustomize_version: v3.6.1
+
+    - name: update k8s 
+      run: |
+        cd k8s
+        kustomize edit set image:  goapp=nandocloud/argocdbsp:${{ github.sha }}  
+        cat kustomization.yaml
+
+# commit dentro do  proprio repo
+    - name: commit 
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Deploy Action"
+        git config -am "change image tag"
+
+    - name: push 
+      uses: ad-m/github-push-action@master
