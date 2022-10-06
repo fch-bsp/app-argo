@@ -1,0 +1,42 @@
+01 k3d cluster create --servers 1  --OU-- k3d cluster create --servers 1 --agents 2
+
+02 docker build -t nandocloud/argocdbsp:latest . 
+
+03 docker push nandocloud/argocdbsp:latest
+
+04 docker run --rm -p 8080:8080 nandocloud/argocdbsp:latest
+
+05 kubectl port-forward  svc/goapp 8080:8080
+
+16 kustomize build
+
+
+
+06  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+07 kubectl get all -n argocd
+
+08 kubectl port-forward  service/argocd-server 9090:80 -n argocd
+
+
+
+
+
+----------------------------
+
+sudo netstat -tlpn
+sudo kill -9 $(lsof -t -i:8080)
+---------------------
+
+dicas:
+# Lista todos os processos que estão rodando
+sudo netstat -tlpn
+
+# Lista todos os processos que estão rodando na porta 8080
+sudo netstat -tlpn | grep 8080
+
+# Mata processo que está rodando na porta 8080
+sudo kill -9 `sudo lsof -t -i:8080`
+sudo kill -9 $(lsof -t -i:8081)
+
+----------------------------------
