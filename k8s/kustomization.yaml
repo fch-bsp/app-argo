@@ -7,6 +7,6 @@ resources:
 namespace: goapp
 
 images:
-  - name:  goapp
-    newName: goapp
-    newTag: v1
+- name: goapp
+  newName: nandocloud/argocdbsp
+  newTag: a759e954493491776b0613a5b532559710f92913
