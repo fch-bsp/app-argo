@@ -9,4 +9,4 @@ namespace: goapp
 images:
 - name: goapp
   newName: nandocloud/argocdbsp
-  newTag: b30ede3548d23563c1b20645b90b44ca312cf3ea
+  newTag: a3e9dbb3b2dedc1aaec2cad381d4e8965364c01c
